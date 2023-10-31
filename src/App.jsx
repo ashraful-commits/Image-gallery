@@ -171,10 +171,10 @@ export default function App() {
           );
         })}
         {/* //========================photo upload button  */}
-        <div className="card  overflow-hidden z-0 relative transition-all duration-500 ease-in-out bg-gray-200 hover:bg-gray-300 rounded-xl">
+        <div className="card   overflow-hidden z-0 relative transition-all duration-500 ease-in-out  hover:bg-gray-300 rounded-xl">
           <label
             htmlFor="uploadGallery"
-            className=" flex flex-col w-full h-52 gap-3 cursor-pointer  border-dotted border-spacing-3 border-gray-300 md:min-w-full md:min-h-full lg:min-w-full lg:min-h-full  justify-center items-center"
+            className=" flex flex-col border-[3px]  w-full h-52 gap-3 cursor-pointer  border-dotted border-spacing-10 border-gray-300 md:min-w-full md:min-h-full lg:min-w-full lg:min-h-full  justify-center items-center"
           >
             <GrGallery size={30} />
             <span className="text-md font-bold">Add photos</span>
