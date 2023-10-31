@@ -11,6 +11,7 @@ import Image8 from "./assets/images/image-10.jpeg";
 import Image9 from "./assets/images/image-11.jpeg";
 import { GrGallery } from "react-icons/gr";
 import { MdCancel } from "react-icons/md";
+import { AiTwotoneDelete } from "react-icons/ai";
 export default function App() {
   const [items, setItems] = useState([
     Image,
@@ -85,50 +86,57 @@ export default function App() {
     });
   };
   return (
-    <div className="lg:w-[80vw] md:w-[90vw] max-w-[1441px] h-max m-auto rounded-2xl px-10 py-2">
-      <div className="header flex justify-between  py-1 border-b border-b-blue-200">
-        <h1 className="text-xl font-bold text-blue-900 py-2">Gallery</h1>
+    <div className="lg:w-[80vw] md:w-[90vw] max-w-[1441px] bg-white mt-5 shadow-lg h-max m-auto rounded-2xl px-10 py-2">
+      <div className="header   my-1  px-5 bg-orange-200 flex justify-between  py-2">
+        {selectedItems.length > 0 ? (
+          <>
+            {" "}
+            <div className="select flex items-center gap-2">
+              <input
+                className={`w-4 h-4 `}
+                type="checkbox"
+                checked={selectedItems.length > 0 ? "checked" : ""}
+              />
+              <label
+                className={`text-sm font-bold text-blue-500 ${
+                  selectedItems.length > 0 ? "text-blue-500" : "text-gray-600"
+                }`}
+                htmlFor=""
+              >
+                {selectedItems.length ? selectedItems.length : 0} Files selected
+              </label>
+              {selectedItems.length > 0 && (
+                <button
+                  onClick={handleDeSelect}
+                  className={`text-sm flex justify-center items-center  font-bold text-red-500 p-1 border border-gray-200 rounded-md hover:bg-orange-300  transition-all duration-500 ease-in-out`}
+                  htmlFor=""
+                >
+                  <MdCancel size={16} />
+                </button>
+              )}
+            </div>
+            <div className="delete">
+              <button
+                type="button"
+                onClick={handleDelete}
+                className={`text-sm lowercase font-bold border ${
+                  selectedItems.length > 0
+                    ? "text-red-600 hover:text-red-600"
+                    : "text-gray-500 hover:text-white "
+                } px-4 py-2 flex gap-2 justify-center items-center rounded-md hover:bg-orange-300  transition-all duration-500 ease-in-out`}
+              >
+                <AiTwotoneDelete /> Delete files
+              </button>
+            </div>
+          </>
+        ) : (
+          <h1 className="text-xl my-1 flex justify-center items-center gap-2 font-bold">
+            <GrGallery />
+            Gallery
+          </h1>
+        )}
       </div>
-      <div className="header  bg-orange-100 my-1  px-5 shadow-sm flex justify-between  py-2">
-        <div className="select flex items-center gap-2">
-          <input
-            className={`w-4 h-4 `}
-            type="checkbox"
-            checked={selectedItems.length > 0 ? "checked" : ""}
-          />
-          <label
-            className={`text-sm font-bold text-blue-500 ${
-              selectedItems.length > 0 ? "text-blue-500" : "text-gray-600"
-            }`}
-            htmlFor=""
-          >
-            {selectedItems.length ? selectedItems.length : 0} Files selected
-          </label>
-          {selectedItems.length > 0 && (
-            <button
-              onClick={handleDeSelect}
-              className={`text-sm flex justify-center items-center  font-bold text-red-500 p-1 border border-gray-200 rounded-md hover:bg-orange-300  transition-all duration-500 ease-in-out`}
-              htmlFor=""
-            >
-              <MdCancel size={16} />
-            </button>
-          )}
-        </div>
-        <div className="delete">
-          <button
-            type="button"
-            onClick={handleDelete}
-            className={`text-sm lowercase font-bold border ${
-              selectedItems.length > 0
-                ? "text-red-600 hover:text-red-600"
-                : "text-gray-500 hover:text-white "
-            } px-4 py-2 border-gray-200 rounded-md hover:bg-orange-300  transition-all duration-500 ease-in-out`}
-          >
-            Delete files
-          </button>
-        </div>
-      </div>
-      <div className="imageGallery border-t border-t-blue-200 gap-5  py-5 lg:gap-5 md:gap-5  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="imageGallery  gap-5  py-5 lg:gap-5 md:gap-5  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {items.map((item, index) => {
           return (
             <div
